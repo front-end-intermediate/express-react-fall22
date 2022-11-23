@@ -2,10 +2,13 @@ import React from "react";
 import Recipe from "./Recipe";
 import FormCreateRecipe from "./FormCreateRecipe";
 
-function Recipes({ recipes, loggedin }) {
+import RecipesContext from "./RecipesContext";
+
+function Recipes({ addRecipe }) {
+  const { recipes, loggedin } = React.useContext(RecipesContext);
   return (
     <section>
-      {loggedin && <FormCreateRecipe />}
+      {loggedin && <FormCreateRecipe addRecipe={addRecipe} />}
       {recipes.map((recipe) => (
         <Recipe key={recipe._id} recipe={recipe} />
       ))}
